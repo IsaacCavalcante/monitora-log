@@ -19,13 +19,12 @@ import lombok.AllArgsConstructor;
 public class EntregaService {
 
 	private EntregaRepository entregaRepository;
-	private ClienteRepository clienteRepository;
+	private ClienteService clienteService;
 	
 	@Transactional
 	public Entrega criar(Entrega entrega) {
 		
-		Cliente cliente = clienteRepository.findById(entrega.getCliente().getId())
-				.orElseThrow(() -> new DomainException("Cliente não encontrado"));
+		Cliente cliente = clienteService.buscar(entrega.getCliente().getId());
 		
 		entrega.setCliente(cliente);
 		
