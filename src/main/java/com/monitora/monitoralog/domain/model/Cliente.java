@@ -1,4 +1,4 @@
-package com.monitora.monitoralog.api.domain.model;
+package com.monitora.monitoralog.domain.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

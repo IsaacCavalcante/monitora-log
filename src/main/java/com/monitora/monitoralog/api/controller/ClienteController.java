@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.monitora.monitoralog.api.domain.model.Cliente;
-import com.monitora.monitoralog.api.domain.repository.ClienteRepository;
+import com.monitora.monitoralog.domain.model.Cliente;
+import com.monitora.monitoralog.domain.repository.ClienteRepository;
 
 import lombok.AllArgsConstructor;
 
