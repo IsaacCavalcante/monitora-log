@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.monitora.monitoralog.domain.model.Cliente;
 import com.monitora.monitoralog.domain.repository.ClienteRepository;
+import com.monitora.monitoralog.domain.service.ClienteService;
 
 import lombok.AllArgsConstructor;
 
@@ -33,6 +34,7 @@ public class ClienteController {
 	
 	@Autowired
 	private ClienteRepository clientRepository;
+	private ClienteService clienteService;
 
 	@GetMapping
 	public List<Cliente> listar() {
@@ -60,7 +62,8 @@ public class ClienteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente adicionar(@Valid @RequestBody Cliente cliente) {
-		return clientRepository.save(cliente);
+//		return clientRepository.save(cliente);
+		return clienteService.save(cliente);
 	}
 	
 	@PutMapping("/{clientId}")
@@ -70,7 +73,8 @@ public class ClienteController {
 		}
 		
 		cliente.setId(clientId);
-		cliente = clientRepository.save(cliente);
+//		cliente = clientRepository.save(cliente);
+		cliente = clienteService.save(cliente);
 		
 		return ResponseEntity.ok(cliente);
 	}
@@ -81,7 +85,8 @@ public class ClienteController {
 			return ResponseEntity.notFound().build();
 		}
 		
-		clientRepository.deleteById(clientId);
+//		clientRepository.deleteById(clientId);
+		clienteService.excluir(clientId);
 		
 		return ResponseEntity.noContent().build();
 	}
