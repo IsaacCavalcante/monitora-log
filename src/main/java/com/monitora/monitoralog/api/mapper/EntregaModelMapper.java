@@ -7,8 +7,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import com.monitora.monitoralog.api.model.EntregaModel;
+import com.monitora.monitoralog.api.model.input.EntregaInput;
 import com.monitora.monitoralog.domain.model.Entrega;
-import com.monitora.monitoralog.domain.model.input.EntregaInput;
 
 import lombok.AllArgsConstructor;
 

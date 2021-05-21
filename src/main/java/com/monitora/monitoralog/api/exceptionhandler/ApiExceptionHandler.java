@@ -18,6 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.monitora.monitoralog.domain.exception.DomainException;
+import com.monitora.monitoralog.domain.exception.EntidadeNaoEncontrada;
 
 import lombok.AllArgsConstructor;
 
@@ -48,6 +49,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler{
 		erro.setCampos(campos);
 				
 		return handleExceptionInternal(ex, erro, headers, status, request);
+	}
+	
+	@ExceptionHandler(EntidadeNaoEncontrada.class)
+	public ResponseEntity<Object> handleEntidadeNaoEncontrada(EntidadeNaoEncontrada ex, WebRequest request) {
+		
+		HttpStatus status = HttpStatus.NOT_FOUND;
+		
+		Erro erro = new Erro();
+		erro.setStatus(status.value());
+		erro.setDataHora(OffsetDateTime.now());
+		erro.setTitulo(ex.getMessage());
+		
+		return handleExceptionInternal(ex, erro, new HttpHeaders(), status, request);
 	}
 	
 	@ExceptionHandler(DomainException.class)

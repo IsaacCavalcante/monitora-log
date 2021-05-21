@@ -1,4 +1,4 @@
-package com.monitora.monitoralog.domain.model.input;
+package com.monitora.monitoralog.api.model.input;
 
 import javax.validation.constraints.NotBlank;
 

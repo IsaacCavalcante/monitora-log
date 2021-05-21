@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.monitora.monitoralog.api.mapper.EntregaModelMapper;
 import com.monitora.monitoralog.api.model.EntregaModel;
+import com.monitora.monitoralog.api.model.input.EntregaInput;
 import com.monitora.monitoralog.domain.model.Entrega;
-import com.monitora.monitoralog.domain.model.input.EntregaInput;
 import com.monitora.monitoralog.domain.repository.EntregaRepository;
 import com.monitora.monitoralog.domain.service.EntregaService;
 
@@ -40,7 +40,7 @@ public class EntregaController {
 	}
 	
 	@GetMapping
-	public List<EntregaModel> bescar() {
+	public List<EntregaModel> listar() {
 		return entregaModelMapper.toCollectionModel(entregaRepository.findAll());
 	}
 	

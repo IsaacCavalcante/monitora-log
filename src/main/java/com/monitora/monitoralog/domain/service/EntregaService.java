@@ -5,6 +5,8 @@ import java.time.OffsetDateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.monitora.monitoralog.domain.exception.DomainException;
+import com.monitora.monitoralog.domain.exception.EntidadeNaoEncontrada;
 import com.monitora.monitoralog.domain.model.Cliente;
 import com.monitora.monitoralog.domain.model.Entrega;
 import com.monitora.monitoralog.domain.model.StatusEntrega;
@@ -23,11 +25,15 @@ public class EntregaService {
 	public Entrega criar(Entrega entrega) {
 		
 		Cliente cliente = clienteService.buscar(entrega.getCliente().getId());
-		
 		entrega.setCliente(cliente);
 		
 		entrega.setStatus(StatusEntrega.PENDENTE);
 		entrega.setDataPedido(OffsetDateTime.now());
+		
 		return entregaRepository.save(entrega);
+	}
+	
+	public Entrega buscar(Long entregaId) {
+		return entregaRepository.findById(entregaId).orElseThrow(() -> new EntidadeNaoEncontrada("Entrega não encontrada"));
 	}
 }
