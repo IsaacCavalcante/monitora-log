@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.monitora.monitoralog.api.mapper.OcorrenciaModelMapper;
-import com.monitora.monitoralog.api.model.EntregaModel;
 import com.monitora.monitoralog.api.model.OcorrenciaModel;
 import com.monitora.monitoralog.api.model.input.OcorrenciaInput;
 import com.monitora.monitoralog.domain.model.Entrega;
 import com.monitora.monitoralog.domain.model.Ocorrencia;
-import com.monitora.monitoralog.domain.repository.EntregaRepository;
 import com.monitora.monitoralog.domain.service.EntregaService;
 import com.monitora.monitoralog.domain.service.OcorrenciaService;
 

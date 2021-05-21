@@ -23,6 +23,7 @@ import javax.validation.groups.Default;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.monitora.monitoralog.domain.ValidationGroups;
+import com.monitora.monitoralog.domain.exception.DomainException;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -76,5 +77,17 @@ public class Entrega {
 		ocorrencias.add(ocorrencia);
 		
 		return ocorrencia;
+	}
+
+	public void finalizar() {
+		if(!podeSerFinalizada()) {
+			throw new DomainException("Entrega não pode ser finalizada, pois seu status não está pendente");
+		}
+		setStatus(StatusEntrega.FINALIZADA);
+		setDataFinalizacao(OffsetDateTime.now());
+	}
+	
+	public boolean podeSerFinalizada() {
+		return StatusEntrega.PENDENTE.equals(this.getStatus());
 	}
 }

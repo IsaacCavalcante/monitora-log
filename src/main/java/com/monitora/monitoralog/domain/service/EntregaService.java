@@ -5,7 +5,6 @@ import java.time.OffsetDateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.monitora.monitoralog.domain.exception.DomainException;
 import com.monitora.monitoralog.domain.exception.EntidadeNaoEncontrada;
 import com.monitora.monitoralog.domain.model.Cliente;
 import com.monitora.monitoralog.domain.model.Entrega;
@@ -35,5 +34,13 @@ public class EntregaService {
 	
 	public Entrega buscar(Long entregaId) {
 		return entregaRepository.findById(entregaId).orElseThrow(() -> new EntidadeNaoEncontrada("Entrega não encontrada"));
+	}
+	
+	public Entrega finalizar(Long entregId) {
+		Entrega entrega = buscar(entregId);
+		
+		entrega.finalizar();
+		
+		return entregaRepository.save(entrega);
 	}
 }
