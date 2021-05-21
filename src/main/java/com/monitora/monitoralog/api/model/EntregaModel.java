@@ -14,7 +14,7 @@ public class EntregaModel {
 
 	private Long id;
 	
-	private String nomeCliente;
+	private ClienteEntregaModel cliente;
 	
 	private DestinatarioModel destinatario;
 	
